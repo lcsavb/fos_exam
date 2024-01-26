@@ -6,10 +6,12 @@
     <body>
         <h1>{{ context.heading }}</h1>
 
-        <h2>Existing Existing books</h2>
-
-        {{ context.books }}
-
+        <!--Loop to show each book -->> 
+        {% for book in context.books %}
+        <h3>{{ book.title }}</h3>
+        <p>Autho: {{ book.author }}</p>
+        <p>Year of Publication: {{ book.year }}</p>
+    {% endfor %}
 
     </body>
 </html>
