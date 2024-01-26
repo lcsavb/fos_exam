@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 # imports for database
 from flask_sqlalchemy import SQLAlchemy
 
+# create flask app
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
@@ -26,7 +27,7 @@ class Book(db.Model):
     publication_year = db.Column(db.Integer)
 
     def __repr__(self):
-        return '<Customer %r>' % self.name
+        return '<Book %r>' % self.name
 
 # create db    
 def create_db():
@@ -62,3 +63,4 @@ def add_book():
 if __name__ == '__main__':
     create_db()
     app.run(debug=True)
+
