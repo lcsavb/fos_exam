@@ -27,7 +27,7 @@ class Book(db.Model):
     publication_year = db.Column(db.Integer)
 
     def __repr__(self):
-        return '<Book %r>' % self.name
+        return '<Book %r>' % self.title
 
 # create db    
 def create_db():
@@ -52,6 +52,7 @@ def add_book():
         publication_year = request.form.get('publication_year')
 
         new_book = Book(title=title, author=author, publication_year=publication_year)
+        print(new_book)
         db.session.add(new_book)
         db.session.commit()
         return redirect(url_for('add_book'))
