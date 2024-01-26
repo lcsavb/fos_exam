@@ -10,12 +10,16 @@ db = SQLAlchemy(app)
 
 
 # route for books
-@app.route('/books')
-def index():
+@app.route('/books', methods=['GET'])
+def show_books():
+
     context = {
-        'title': 'Books LIst',
-        'heading': 'Welcome to my Flask App!'
+        'title': 'List of Books',
+        'heading': 'Books in the database',
+        'books': Book.query.all()
     }
+
+    print(context)
     return render_template('books.html', context=context)
 
 
@@ -33,16 +37,6 @@ class Book(db.Model):
 def create_db():
     with app.app_context():
         db.create_all()
-
-@app.route('/books', methods=['GET'])
-def show_books():
-
-    context = {
-        'title': 'Data',
-        'heading': 'Data',
-        'books': Book.query.all()
-    }
-    return render_template('books.html', context=context)
 
 @app.route('/add_book', methods=['GET', 'POST'])
 def add_book():
